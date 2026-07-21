@@ -1,0 +1,117 @@
+body
+{ 
+	background-color : #e5ecff;
+	font-family : Times;
+	font-size : 12pt; 
+	line-height : 150%; 
+	margin : 10pt;
+} 
+
+.center
+{
+	text-align : center;
+}
+
+.left
+{
+	text-align : left;
+}
+
+H1
+{
+	font-size : 20pt;
+	padding : 0pt;
+	border-bottom : 5pt double darkgray;	
+	line-height : 100%;
+	font-weight : bold;
+	color : blue;
+	text-align : left
+}	
+
+
+H2
+{
+	line-height : 100%;
+	font-size : 18pt;
+	font-weight : bold;	
+	padding : 0pt;
+}
+
+
+
+H3
+{
+	line-height : 100%;
+	font : normal 18pt;
+	padding : 5pt;
+	padding : 0pt;
+}
+
+
+
+H5
+{
+	text-align : left;
+	line-height : 100%;
+	font-size : 12pt;
+	font-weight : bold;
+	padding-top : 5pt;
+	padding-bottom : 5pt;
+	border-top : 2pt solid darkgray;
+	border-bottom : 2pt solid darkgray;
+}
+
+H6
+{
+	text-align : center;
+	line-height : 100%;
+	font-size : 12pt;
+	font-weight : bold;
+	padding-top : 5pt;
+	padding-bottom : 5pt;
+	border-top : 2pt solid darkgray;
+	border-bottom : 2pt solid darkgray;
+}
+
+H4
+{
+	font-size : 16pt;
+	font-weight : bold;
+	line-height : 100%;
+	padding : 5pt;
+	padding-top : 10pt;
+	margin-top : 15pt;
+	border-top : 5pt solid darkgray;
+}
+
+H4.without
+{
+	margin-top : -15pt;
+	border : none;
+}
+
+p
+{
+	font-size : 13pt;
+	margin-top : 7pt;
+	margin-bottom : 7pt;
+	padding-left : 0%;
+	padding-right : 0%;
+}
+
+.indent
+{
+	text-indent : 1.5em;
+}
+
+div
+{
+	text-align : center;
+}
+
+em
+{
+	font-style : normal;
+	font-weight : bold;
+	color : red;
+}	
