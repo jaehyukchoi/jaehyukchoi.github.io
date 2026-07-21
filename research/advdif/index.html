@@ -1,0 +1,206 @@
+<html> 
+<head> <title>Advection-Diffusion</title> </head>
+
+<center>
+<h1> Steady Advection-Diffusion Around Finite Absorbers 
+<br> in Two-Dimensional Potential Flows </h1>
+
+<h3><br>Jaehyuk Choi, Dionisios Margetis, Todd M. Squires, and Martin Z. Bazant
+<br> <a href="http://dx.doi.org/10.1017/S0022112005005008">J. Fluid Mech. 536, 155</a> (2005), <a href="http://arxiv.org/abs/cond-mat/0403740"> cond-mat/0403740</a>
+</h3>
+</center>
+
+<hr>
+
+<b>Copyright 2005 by Jaehyuk Choi</b>
+<br>All of the codes in this page were written by Jaehyuk Choi. Please refer the JFM article above when you use or modify the codes. This paper provides the theory and algorithm behind the codes.
+
+<hr>
+<b>Exact solutions of the Navier--Stokes equations having steady vortex structures
+<a href="http://dx.doi.org/10.1017/S0022112005006130">J. Fluid Mech. 541, 55</a> (2005) </b>
+<br>
+
+<hr>
+<h2> Overview </h2>
+
+
+<p>
+This web page provides numerical solutions of steady advection-diffusion around
+the unit disk (Fig. 1 a):
+<center>
+<img src="ad_w.png" hspace="2" vspace="2" border="0" align="top">
+</center>
+
+<p>
+The system is conformally invariant, thus the solution for any arbitrary geometry (Fig. 1 b-c) can be mapped from this canonical solution. The Peclet number <b>Pe</b> is the speed of the background flow far away and the solution <b>c</b> depends on <b>Pe</b> as well as the spacial coordinate.
+
+<p>
+A quantitiy of interest is the normal flux on the boundary of the disk which causes growth in the quasi-linear system:
+<center>
+<img src="sig.png" hspace="2" vspace="2" border="0" align="top">
+</center>
+
+ <p>
+For stochastic growth, the probability measure is proportional to the flux with normalization by Nussel number <b>Nu(Pe)</b>:
+<center>
+<img src="Nu.png" hspace="2" vspace="2" border="0" align="top">
+</center>
+
+
+<p>
+<center>
+<b>Fig. 1</b>
+(a) <img src="circle_out.png" hspace="2" vspace="2" border="0" align="top">
+(b) <img src="strip.png" hspace="2" vspace="2" border="0" align="top">
+(c) <img src="cluster.png" hspace="2" vspace="2" border="0" align="top">
+<br>
+</center>
+<ul><ul>
+<b>Fig. 1</b>: The concentration profiles <b>c(w=x+iy)</b> (color contour) and stream lines (open yellow curves) around different absorbing objects in a uniform background potential flow (<b>Pe</b>=1): (a) the unit disk, (b) a finite strip, and (c) a fractal cluster.
+</ul></ul>
+
+<p>
+<center>
+<b>Fig. 2</b>
+(a) <img src="tail1.png" hspace="2" vspace="2" border="0" align="top">
+(b) <img src="tail2.png" hspace="2" vspace="2" border="0" align="top">
+(c) <img src="tail3.png"  hspace="2" vspace="2" border="0" align="top">
+</center>
+<ul><ul>
+<b>Fig. 2</b>: The concentration profiles <b>c(w)</b> for different Pe: (a) Pe = 0.01, (b) Pe = 1, and (c) Pe = 100.
+</ul></ul>
+
+<p>
+<center>
+<b>Fig. 3</b>
+(a) <img src="Flux1.png"  hspace="2" vspace="2" border="0" align="top">
+(b) <img src="Flux2.png"  hspace="2" vspace="2" border="0" align="top">
+</center>
+<ul><ul>
+<b>Fig. 3</b>: The normal flux on the boundary <b>&sigma;(&theta;; Pe)</b>: (a) <b>&sigma;(&theta;)/&sigma;(&pi;)</b> for different <b>Pe</b>, and (b) <b>&sigma;(&pi;)</b> (max) and <b>&sigma;(0)</b> (min) as functions of <b>Pe</b> 
+</ul></ul>
+
+<hr>
+<h2> Matlab Codes and Data </h2>
+
+<h3> Download <a href="mfiles.zip"> all m-files</a> ( <code>.mat</code> not included ) </h3>
+
+<h3> <a href="ConcSpectral.m"><code>ConcSpectral.m</code></a> </h3>
+
+Calculates <b>c(r,&theta;; Pe)</b> using (regular) spectral method as described in Sec. 3.1-3. The PDE is solved inside the unit disk (Fig. 4 a) in polar coordinates (Fig. 4 b).
+
+<p><center>
+<b>Fig. 4</b>
+(a) <img src="circle_in.png" hspace="2" vspace="2" border="0" align="top">
+(b) <img src="polar.png" hspace="2" vspace="2" border="0" align="top">
+</center>
+<ul><ul>
+<b>Fig. 4</b>: The concentration profiles (a) <b>c(1/w)</b>
+and <b>c(r,&theta;)</b> for  <b>Pe</b> = 1.
+</ul></ul>
+
+<h3> <a href="ConcAdpmesh.m"><code>ConcAdpmesh.m</code></a> </h3>
+
+Calculates <b>c(r,&theta;; Pe)</b> using adeptive grid as described in Sec. 3.4. When <b>Pe</b> is very low or high, the boundary layers appear (Fig. 5 a). Using adeptive mesh for <b>r</b> and <b>&theta;</b>, the layers can be stretched out (Fig. 5 b) so that the bevavoir is smooth. Subfunctions, <a href="AdpmeshR.m"><code>AdpmeshR.m</code></a> and <a href="AdpmeshTH.m"><code>AdpmeshTH.m</code></a>, which generate the adeptive mesh, are used in this function.
+
+<p><center>
+<b>Fig. 5</b>
+(a) <img src="adpmesh1.png" hspace="2" vspace="2" border="0" align="top">
+(b) <img src="adpmesh2.png" hspace="2" vspace="2" border="0" align="top">
+</center>
+<ul><ul>
+<b>Fig. 5</b>: The concentration profile for <b>Pe</b> = 100 in (a) normal spectral grid  <b>c(r,&theta;)</b> and in (b) adeptive grid <b>c(r',&theta')</b>.
+</ul></ul>
+
+<h3> <a href="FluxAsymH.m"><code>FluxAsymH.m</code></a> </h3>
+
+Calculates <b>&sigma;(&theta;, Pe)</b> using exact high-<b>Pe</b> asymptotic expansions as described in Sec. 4.
+Subfunctions: <a href="expbesselk.m"><code>expbesselk.m</code></a> and
+ <a href="experfc.m"><code>experfc.m</code></a>
+
+<h3> <a href="FluxAsymL.m"><code>FluxAsymL.m</code></a> </h3>
+
+Calculates <b>&sigma;(&theta;, Pe)</b> from the leading order term of the low-<b>Pe</b> asymptotic expansions as described in Sec. 5.
+
+<h3> <a href="Nussel.m"><code>Nussel.m</code></a> </h3>
+
+Calculates <b>Nu(Pe)</b> from <a href="FluxAsymH.m"><code>FluxAsymH.m</code></a> and <a href="FluxAsymL.m"><code>FluxAsymL.m</code></a>.
+
+<h3> <a href="RefSoln.mat"><code>RefSoln.mat</code></a> </h3>
+
+Stores solutios for a range of <b>Pe</b>. 
+
+<ul>
+<b>Stored Variables:</b>
+<li> <code>r, th</code> : the spectral grid points for <b>r</b> and <b>&theta;</b>
+<li> <code>Nr, Nth</code> : the number of grid ponts used as the arguments for <code>ConcSpectral.m</code>
+<li> <code>PeI</code> : the reference values of <b>Pe</b>
+<li> <code>SigI</code> : <b>&sigma;(&theta;, Pe)</b>
+<li> <code>NuI</code> : <b>Nu(Pe)</b>
+<li> <code>HI</code> : <b>h(r, &theta;; Pe)</b>. <b>c</b> is not stored since it can be obtained from <b>h</b>.
+<li> <code>cdfI, thI</code> : The inverse cumulative distribution function of <b>p(&theta;; Pe)</b>. E.g. <code>thI(cdfI==0, PeI) = 0, thI(cdfI==1, PeI) = 2&pi</code>
+</ul>
+
+<ul>
+<b>Related m-functions:</b>
+<li> <a href="RefSoln.m"><code>RefSoln.m</code></a> : Generates <a href="RefSoln.mat"><code>RefSoln.mat</code></a>
+<li> <a href="GetRefSoln.m"><code>GetRefSoln.m</code></a> : Return the concentration <b>c</b> based on the interpolation of <b>h</b> in <code>RefSoln.mat</code>.
+</ul>
+
+<h3> Other Subfunctions </h3>
+
+<ul>
+<li> <a href="mycheb.m"><code>mycheb.m</code></a> and <a href="myclencurt.m"><code>myclencurt.m</code></a> : numerical differentiation and integration. Modified from the original codes (<code>cheb.m</code> and <code>clencurt.m</code>) in <b><a href="http://web.comlab.ox.ac.uk/oucl/work/nick.trefethen">Spectral Methods</a></b> by Trefethen 
+<li> <a href="repop.m"><code>repop.m</code></a> :
+</ul>
+
+<h3> Visualization Examples </h3>
+<ul>
+<li> <a href="DrawCircleOut.m"><code>DrawCircleOut.m</code></a> : Fig. 1 (a)
+<li> <a href="DrawStrip.m"><code>DrawStrip.m</code></a> : Fig. 1 (b)
+<li> <a href="DrawCircleIn.m"><code>DrawCircleIn.m</code></a> : Fig. 4 (a)
+<li> <a href="DrawPolar.m"><code>DrawPolar.m</code></a> : Fig. 4 (b)
+</ul>
+
+<hr>
+<h2> Recommended Uses of m-functions According to Pe </h2>
+
+<h3> &sigma;(&theta;, Pe) or Nu(Pe) </h3>
+
+If you only need the flux <b>&sigma;</b>, not the concentratoin <b>c</b>, <code>FluxAsymH.m</code> or <code>FluxAsymL.m</code> are exact and fast. <code>ConcSpectral.m</code> or <code>ConcSpectral.m</code> requires solving a very large linear system of equations. The ranges of <b>Pe</b> suitable for the functions are as follows:
+
+<ul>
+<li><b>Pe</b> < 0.001 : <a href="FluxAsymL.m"><code>FluxAsymL.m</code></a>
+<li>0.001 < <b>Pe</b> : <a href="FluxAsymH.m"><code>FluxAsymH.m</code></a>
+</ul>
+
+At <b>Pe</b> = 0.001, <code>FluxAsymL.m</code> is very accurate although it's only the leading order. <code>FluxAsymH.m</code> is also good below <b>Pe</b> = 0.001, but more and more terms are required.
+
+<a href="Nussel.m"><code>Nussel.m</code></a> gives <b>Nu(Pe)</b> using the above criteria.
+
+<h3> c(r,&theta;; Pe) </h3>
+
+Use <code>ConcAdpmesh.m</code> rather than <code>ConcSpectral.m</code> when <b>Pe</b> is very low or high;
+
+<ul>
+<li> 0.01 < <b>Pe</b> < 100 : <a href="ConcSpectral.m"><code>ConcSpectral.m</code></a>
+<li> <b>Pe</b> < 0.01 or 100 < <b>Pe</b> : <a href="ConcAdpmesh.m"><code>ConcAdpmesh.m</code></a>
+</ul>
+
+However, use <a href="GetRefSoln.m"><code>GetRefSoln.m</code></a>. It's very fast since it fetchs and interpolates the stored solutions.
+If you need more accurate solutions, you can calculate solutions for more dense values of <b>Pe</b> and more grid points (<code>Nr</code> and <code>Nth</code>) in advance and save to <code>RefSoln.mat</code>. You can also use <code>ConcAdpmesh.m</code> for low and high <b>Pe</b>, but be aware that, in that case, the grid points <code>r</code> and <code>th</code> are different for each <code>Pe</code>. So you'll have to write a new <code>GetRefSoln.m</code> with a more sophiscated interpolation algorithm. I didn't try that.
+ 
+<hr> 
+<h2> Contact Us </h2>
+
+<ul>
+<li>Jaehyuk Choi: <code>jaehyuk _@_ eml.cc</code>
+<li>Dionisios Margetis: <code>dio _@_ math.mit.edu</code>
+<li>Todd M. Squires: <code>tsquires _@_ acm.caltech.edu</code>
+<li><a href="http://math.mit.edu/~bazant">Martin M. Bazant</a>: <code>bazant _@_ math.mit.edu</code>
+</ul>
+
+<hr> 
+
+</body>
+
